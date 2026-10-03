@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Makes phones use their real width instead of zooming out to a fake desktop width. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join the team · Tehillim</title>
+  <meta name="description" content="Sing or play with us. Apply to join the worship and music team.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+
+  <!-- Brand fonts from Google Fonts. preconnect starts the connection early so text appears sooner. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Tells the CSS that JavaScript works, so it's safe to hide the phone nav behind
+       the Menu button. It runs here in <head> so the nav never flashes open first. -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- defer: download now, run after the page is read. config.js comes first
+       because main.js uses the siteConfig it defines. -->
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <!-- Only this page loads join.js: it checks the form. -->
+  <script src="js/join.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== Shared header: the same on every page ===== -->
+  <header class="site-header">
+    <div class="th-header container">
+      <a class="th-wordmark" href="index.html" aria-label="Tehillim, home">
+        <span class="th-wordmark__latin">Tehillim</span>
+        <span class="th-wordmark__rule" aria-hidden="true"></span>
+        <!-- Hebrew reads right to left: lang and dir tell the browser and screen readers. -->
+        <span class="th-wordmark__he" lang="he" dir="rtl">תְּהִלִּים</span>
+      </a>
+
+      <!-- aria-controls links the button to the nav it opens. aria-expanded is updated by main.js. -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <!-- Lucide "menu" icon. aria-hidden because the word "Menu" already says what it does. -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="th-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="team.html">Meet the team</a></li>
+          <li><a href="songs.html">Songs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Page content: the only part that differs between pages ===== -->
+  <main id="main" class="page container">
+    <h1>Join the team</h1>
+
+    <blockquote class="th-verse">
+      <p>Sing unto him a new song; play skilfully with a loud noise.</p>
+      <cite>Psalm 33:3</cite>
+    </blockquote>
+
+    <p class="join-intro">
+      Whether you sing, play, or prefer the sound desk, we’d love to hear from you.
+      Fill in the form and a team leader will get in touch.
+    </p>
+
+    <!-- novalidate: join.js shows its own friendly error messages instead of the browser's pop-ups.
+         Each field wrapper has data-field so join.js can find its error message. -->
+    <form id="join-form" class="join-form" novalidate>
+      <div class="th-field" data-field="fullName">
+        <label for="fullName">Full name</label>
+        <input id="fullName" name="fullName" type="text" autocomplete="name" required
+               aria-describedby="fullName-error">
+        <p class="th-field__error" id="fullName-error"></p>
+      </div>
+
+      <div class="th-field" data-field="email">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required
+               aria-describedby="email-error">
+        <p class="th-field__error" id="email-error"></p>
+      </div>
+
+      <div class="th-field">
+        <label for="phone">Phone <span class="th-field__hint">(optional)</span></label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel">
+      </div>
+
+      <!-- fieldset + legend groups the checkboxes, so a screen reader reads the question
+           ("Positions you're interested in") before each option. -->
+      <fieldset class="th-field choice-group" data-field="positions" aria-describedby="positions-error">
+        <legend>Positions you’re interested in</legend>
+        <label class="choice"><input type="checkbox" name="positions" value="Vocals"> Vocals</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Keys"> Keys</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Acoustic guitar"> Acoustic guitar</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Electric guitar"> Electric guitar</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Bass"> Bass</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Drums"> Drums</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Sound"> Sound</label>
+        <label class="choice"><input type="checkbox" name="positions" value="Lyrics/Projection"> Lyrics/Projection</label>
+        <p class="th-field__error" id="positions-error"></p>
+      </fieldset>
+
+      <fieldset class="th-field choice-group" data-field="experience" aria-describedby="experience-error">
+        <legend>Experience level</legend>
+        <label class="choice"><input type="radio" name="experience" value="beginner"> Beginner</label>
+        <label class="choice"><input type="radio" name="experience" value="some"> Some experience</label>
+        <label class="choice"><input type="radio" name="experience" value="experienced"> Experienced</label>
+        <p class="th-field__error" id="experience-error"></p>
+      </fieldset>
+
+      <div class="th-field th-field--wide" data-field="message">
+        <label for="message">Message <span class="th-field__hint">(optional)</span></label>
+        <textarea id="message" name="message" rows="5" aria-describedby="message-count message-error"></textarea>
+        <p class="th-field__hint" id="message-count" aria-live="polite"></p>
+        <p class="th-field__error" id="message-error"></p>
+      </div>
+
+      <!-- The page's one pomegranate button. It says exactly what happens. -->
+      <button class="th-btn th-btn--primary" type="submit">Send application</button>
+    </form>
+
+    <!-- Shown by join.js after a valid submit. tabindex="-1" lets JS move focus here. -->
+    <div id="join-confirmation" class="join-confirmation" tabindex="-1" hidden>
+      <h2>Thank you, <span data-applicant-name></span></h2>
+      <p>We’ve received your application. A team leader will be in touch soon.</p>
+    </div>
+  </main>
+
+  <!-- ===== Shared footer. Empty spots are filled from js/config.js by main.js ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <p class="site-footer__church" data-config="churchName"></p>
+          <p data-config="city"></p>
+        </div>
+
+        <div>
+          <h2 class="site-footer__heading">Services</h2>
+          <ul data-config-list="serviceTimes"></ul>
+        </div>
+
+        <div>
+          <h2 class="site-footer__heading">Contact</h2>
+          <p><a class="site-footer__email" data-config-email></a></p>
+          <ul class="site-footer__links" data-config-social aria-label="Social media"></ul>
+        </div>
+      </div>
+
+      <p class="site-footer__small">
+        © <span data-year></span> <span data-config="churchName"></span> worship team.
+        Built with Tehillim.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
