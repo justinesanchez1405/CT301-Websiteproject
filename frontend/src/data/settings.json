@@ -1,0 +1,20 @@
+{
+  "churchName": "Cedar Hill Church",
+  "city": "Springfield",
+  "serviceTimes": ["Sundays at 9:00 AM", "Sundays at 11:00 AM"],
+  "rehearsal": "Saturdays at 4:00 PM",
+  "aboutText": "We’re the singers, musicians, and tech crew who lead worship each Sunday. We rehearse together every week, pray for one another, and love helping the whole church sing.",
+  "email": "worship@example.com",
+  "socialLinks": [
+    { "label": "Facebook", "url": "#" },
+    { "label": "YouTube", "url": "#" },
+    { "label": "Instagram", "url": "#" }
+  ],
+  "spotifyPlaylistUrl": "",
+  "learningSongs": [
+    { "title": "Amazing Grace", "artist": "John Newton" },
+    { "title": "Be Thou My Vision", "artist": "Traditional Irish, translated by Mary Byrne" },
+    { "title": "It Is Well with My Soul", "artist": "Horatio Spafford" },
+    { "title": "Holy, Holy, Holy", "artist": "Reginald Heber" }
+  ]
+}

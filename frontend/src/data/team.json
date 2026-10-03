@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "Member name", "positions": ["Worship leader", "Vocals"], "group": "Vocals", "photo": "" },
+  { "id": 2, "name": "Member name", "positions": ["Vocals"], "group": "Vocals", "photo": "" },
+  { "id": 3, "name": "Member name", "positions": ["Vocals"], "group": "Vocals", "photo": "" },
+  { "id": 4, "name": "Member name", "positions": ["Keys"], "group": "Band", "photo": "" },
+  { "id": 5, "name": "Member name", "positions": ["Acoustic guitar", "Vocals"], "group": "Band", "photo": "" },
+  { "id": 6, "name": "Member name", "positions": ["Bass"], "group": "Band", "photo": "" },
+  { "id": 7, "name": "Member name", "positions": ["Drums"], "group": "Band", "photo": "" },
+  { "id": 8, "name": "Member name", "positions": ["Sound"], "group": "Tech", "photo": "" },
+  { "id": 9, "name": "Member name", "positions": ["Lyrics/Projection"], "group": "Tech", "photo": "" }
+]
