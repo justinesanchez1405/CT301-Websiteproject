@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap");
+
+/* Tehillim component styles. Every value comes from a token in tokens.json. */
+
+body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; }
+.th-frame { padding: var(--space-6); }
+:focus-visible { outline: var(--stroke-focus) solid var(--focus); outline-offset: 2px; }
+
+/* Buttons */
+.th-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 44px; padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); border: var(--stroke-hair) solid transparent; font: 600 15px/1.3 var(--font-sans); text-decoration: none; cursor: pointer; background: none; color: var(--ink); }
+.th-btn--primary { background: var(--pomegranate); color: var(--on-pomegranate); }
+.th-btn--secondary { border-color: var(--tekhelet); color: var(--tekhelet); }
+.th-btn--quiet { padding-left: var(--space-2); padding-right: var(--space-2); color: var(--tekhelet); text-decoration: underline; text-underline-offset: 4px; }
+.th-btn--primary:hover { filter: brightness(1.08); }
+.th-btn--secondary:hover { background: var(--tekhelet-soft); }
+
+/* Header */
+.th-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); padding: var(--space-4) var(--space-6); background: var(--surface); border-bottom: var(--stroke-hair) solid var(--line); }
+.th-wordmark { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; font-family: var(--font-display); font-weight: 500; }
+.th-wordmark__latin { font-size: 24px; color: var(--ink); }
+.th-wordmark__rule { width: var(--stroke-hair); height: 24px; background: var(--brass); }
+.th-wordmark__he { font-size: 24px; color: var(--tekhelet); }
+.th-nav { display: flex; align-items: center; gap: var(--space-6); }
+.th-nav a { font: 600 15px/1.3 var(--font-sans); color: var(--ink); text-decoration: none; padding: var(--space-2) 0; border-bottom: var(--stroke-focus) solid transparent; }
+.th-nav a[aria-current="page"] { color: var(--tekhelet); border-bottom-color: var(--tekhelet); }
+
+/* Hero: the one bold moment */
+.th-hero { text-align: center; padding: var(--space-16) var(--space-6); }
+.th-hero__he { margin: 0; font: 500 96px/1.1 var(--font-display); color: var(--tekhelet); }
+.th-hero__meaning { margin: var(--space-2) 0 0; font: 400 13px/1.4 var(--font-sans); color: var(--ink-muted); }
+.th-hero__title { margin: var(--space-6) 0 0; font: 500 40px/1.1 var(--font-display); color: var(--ink); }
+.th-hero__verse { margin: var(--space-4) auto 0; max-width: 32ch; font: 400 20px/1.5 var(--font-display); color: var(--ink); }
+.th-hero__actions { margin-top: var(--space-8); display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+
+/* Verse */
+.th-verse { margin: 0; max-width: var(--reading-max); }
+.th-verse p { margin: 0; font: 400 24px/1.5 var(--font-display); color: var(--ink); }
+.th-verse cite { display: block; margin-top: var(--space-2); font: 400 13px/1.4 var(--font-sans); font-style: normal; color: var(--ink-muted); }
+
+/* Selah divider: a musical pause between sections */
+.th-selah { display: flex; align-items: center; justify-content: center; gap: var(--space-4); margin: var(--space-8) 0; }
+.th-selah::before, .th-selah::after { content: ""; width: 48px; height: var(--stroke-hair); background: var(--brass); }
+.th-selah span { font: 400 15px/1 var(--font-display); color: var(--brass); letter-spacing: 0.04em; }
+
+/* Form field */
+.th-field { display: flex; flex-direction: column; gap: var(--space-1); max-width: 360px; }
+.th-field label { font: 600 15px/1.3 var(--font-sans); color: var(--ink); }
+.th-field input { min-height: 44px; padding: 0 var(--space-3); border: var(--stroke-hair) solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface-raised); color: var(--ink); font: 400 16px/1.4 var(--font-sans); }
+.th-field__hint { font: 400 13px/1.4 var(--font-sans); color: var(--ink-muted); }
+.th-field--error input { border-color: var(--danger); }
+.th-field__error { font: 400 13px/1.4 var(--font-sans); color: var(--danger); }
+
+/* Song card */
+.th-song-card { display: block; max-width: 320px; padding: var(--space-4) var(--space-6); background: var(--surface-raised); border: var(--stroke-hair) solid var(--line); border-radius: var(--radius-md); text-decoration: none; color: var(--ink); }
+.th-song-card__title { margin: 0; font: 600 20px/1.3 var(--font-sans); color: var(--ink); }
+.th-song-card__author { margin: var(--space-1) 0 0; font: 400 13px/1.4 var(--font-sans); color: var(--ink-muted); }
+.th-song-card__meta { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-3); font: 400 13px/1.4 var(--font-sans); color: var(--ink-muted); }
+.th-key { padding: 2px var(--space-2); border-radius: var(--radius-sm); background: var(--tekhelet-soft); color: var(--tekhelet); font: 700 13px/1.4 var(--font-sans); }
+
+/* Chord chart */
+.th-chart { max-width: var(--reading-max); padding: var(--space-6); background: var(--surface-raised); border: var(--stroke-hair) solid var(--line); border-radius: var(--radius-md); }
+.th-chart__section { margin: 0 0 var(--space-2); font: 600 13px/1.4 var(--font-sans); color: var(--ink-muted); }
+.th-chart__line { display: flex; flex-wrap: wrap; align-items: flex-end; margin-bottom: var(--space-3); }
+.th-chunk { display: inline-flex; flex-direction: column; white-space: pre; }
+.th-chunk b { min-height: 1.2em; padding-right: var(--space-2); font: 700 15px/1.2 var(--font-sans); color: var(--tekhelet); }
+.th-chunk span { font: 400 18px/1.4 var(--font-sans); color: var(--ink); }
+
+/* Status badges and assignments */
+.th-badge { display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px var(--space-2); border-radius: var(--radius-sm); font: 600 13px/1.4 var(--font-sans); border: var(--stroke-hair) solid transparent; }
+.th-badge--confirmed { background: var(--olive-soft); color: var(--olive); }
+.th-badge--pending { background: var(--surface-raised); color: var(--ink-muted); border-color: var(--line-strong); }
+.th-badge--declined { background: var(--danger-soft); color: var(--danger); }
+.th-assignment { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; padding: var(--space-4); background: var(--surface-raised); border: var(--stroke-hair) solid var(--line); border-radius: var(--radius-md); max-width: 560px; }
+.th-assignment__date { margin: 0; font: 600 16px/1.3 var(--font-sans); color: var(--ink); }
+.th-assignment__role { margin: 2px 0 0; font: 400 13px/1.4 var(--font-sans); color: var(--ink-muted); }
+.th-stack { display: flex; flex-direction: column; gap: var(--space-3); }
+.th-row { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; }

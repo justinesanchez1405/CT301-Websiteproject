@@ -1,0 +1,23 @@
+# Secrets: never commit real keys or passwords (Phase 3+). Keep .env.example instead.
+.env
+.env.*
+!.env.example
+
+# Editor and OS clutter
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Phase 2: Node / Vite
+node_modules/
+dist/
+*.log
+
+# Phase 3: Python / Django
+__pycache__/
+*.pyc
+venv/
+.venv/
+db.sqlite3
+media/

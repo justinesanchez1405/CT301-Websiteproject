@@ -1,0 +1,69 @@
+/* Tehillim design tokens. Generated from tokens.json. Copy into site/css/styles.css. */
+
+/* Day theme (default) */
+:root {
+  --surface: #F5F6F2;
+  --surface-raised: #FFFFFF;
+  --line: #D6DBD2;
+  --line-strong: #7A8796;
+  --ink: #0F1E33;
+  --ink-muted: #4B5A6E;
+  --tekhelet: #1E4D7B;
+  --tekhelet-soft: #E2EBF4;
+  --on-tekhelet: #FFFFFF;
+  --pomegranate: #9B2D3F;
+  --on-pomegranate: #FFFFFF;
+  --brass: #85652F;
+  --olive: #3D6B2C;
+  --olive-soft: #E6EFDD;
+  --danger: #B3261E;
+  --danger-soft: #FBE9E7;
+  --night: #0F1E33;
+  --on-night: #F5F6F2;
+  --focus: var(--tekhelet);
+  --link: var(--tekhelet);
+}
+
+/* Night watch theme: dark mode and the stage lyrics display */
+[data-theme="dark"] {
+  --surface: #0E1B2E;
+  --surface-raised: #162840;
+  --line: #2C3F5C;
+  --line-strong: #6B7F9C;
+  --ink: #EEF0EA;
+  --ink-muted: #A7B3C4;
+  --tekhelet: #8DB8E3;
+  --tekhelet-soft: #1A3352;
+  --on-tekhelet: #0E1B2E;
+  --pomegranate: #EE97A5;
+  --on-pomegranate: #0E1B2E;
+  --brass: #CBAA70;
+  --olive: #A5CF86;
+  --olive-soft: #1E3318;
+  --danger: #FF8F85;
+  --danger-soft: #3A1714;
+  --night: #08121F;
+  --on-night: #EEF0EA;
+}
+
+/* Spacing, radius, lines, layout, fonts */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --stroke-hair: 1px;
+  --stroke-focus: 2px;
+  --content-max: 1120px;
+  --reading-max: 68ch;
+  --font-display: "Frank Ruhl Libre", "Noto Serif Hebrew", Georgia, serif;
+  --font-sans: "Assistant", "Noto Sans Hebrew", system-ui, sans-serif;
+}
