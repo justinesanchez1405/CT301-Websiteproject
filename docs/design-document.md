@@ -4,15 +4,15 @@ Tehillim (Hebrew תְּהִלִּים, "praises," the book of Psalms) is a reusa
 church worship and music team. Any team can copy it and change one settings file to make it
 their own. This document covers the visual design and the front-end structure of the public site. The database design is in [database-design.md](database-design.md).
 
-**Status:** the design was first built as a plain-HTML prototype (`site/`, shown in the
-screenshots below). It is being moved into the React app in `frontend/`, which becomes the
-only version of the site. The visual design does not change in the move.
+**Status:** the public site is complete, built in React (Vite + React Router) in `frontend/`.
+The screenshots below were taken from an earlier plain-HTML prototype with the same visual
+design, which the React version replaced.
 
 ## 1. Project scope and phases
 
 | Phase | What it delivers | Technology | Status |
 |---|---|---|---|
-| 1 | Public site: Home, Meet the team, Songs, Events, Join | React, Vite, React Router | In progress (prototype done) |
+| 1 | Public site: Home, Meet the team, Songs, Events, Join | React, Vite, React Router | Done |
 | 2 | Team portal: song library and setlists (mock data) | React, Vite, React Router | Planned |
 | 3 | Back end, login, schedule, admin | Django, Django REST Framework, MySQL | Database designed and modeled |
 | 4 | Chord transposer, lyrics display, reminders, practice tracks | React and Django | Planned |
@@ -146,28 +146,31 @@ keyboard, and closes with Escape.
 
 ## 6. Front-end structure
 
-This is the structure of the HTML prototype. The React structure that replaces it is in
-[SPEC.md section 5](SPEC.md).
-
 ```
-site/
-├── index.html, team.html, songs.html, events.html, join.html
-├── css/styles.css      design tokens + all styles, mobile first
-├── js/
-│   ├── config.js       team settings: the one file a new team edits
-│   ├── main.js         shared: fill in settings, mobile menu, current page, footer year
-│   ├── songs.js        playlist embed + song cards
-│   ├── team.js         member cards from an array
-│   ├── events.js       upcoming events, past ones hidden
-│   └── join.js         form validation
-└── assets/images/      favicon, placeholder member photo
+frontend/
+├── index.html              the one HTML page; React draws everything inside #root
+├── public/                 favicon, placeholder member photo
+└── src/
+    ├── main.jsx            starts React and the router
+    ├── App.jsx             routes: /, /team, /songs, /events, /join
+    ├── styles.css          design tokens + all styles, mobile first
+    ├── data/               settings.json, team.json, events.json
+    ├── components/         Layout, Header, Footer, Selah, SongCard, MemberCard,
+    │                       EventCard, FieldError
+    ├── pages/              HomePage, TeamPage, SongsPage, EventsPage, JoinPage
+    └── utils/              spotify.js, events.js, validate-join.js (plain logic, no React)
 ```
 
 **Key design decision: data separate from layout.** Team-specific details (church name,
-service times, email, social links, songs) live in `config.js`. The HTML marks empty spots
-with attributes like `data-config="churchName"`, and `main.js` fills them in. A new team
-edits one file and never touches the HTML. The same idea carries into Phase 2 (React
-components with JSON data) and Phase 3 (data from the database API).
+service times, email, social links, songs) live in `src/data/settings.json`, and team members
+and events in their own JSON files. Components read the data and draw it, so a new team edits
+data files and never touches a component. In Phase 3 the same data comes from the database API
+instead, in the same shape.
+
+**Key design decision: logic outside components.** Date filtering, the Spotify link
+conversion, and form validation are plain functions in `src/utils/`. They take inputs and
+return results without touching the page, so they can be tested on their own and reused by
+the server-backed version later.
 
 ## 7. Accessibility checklist
 

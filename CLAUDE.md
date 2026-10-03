@@ -40,12 +40,12 @@ decides how everything looks: read `docs/brand/README.md` before building any pa
 
 Update these checkboxes and the "Current phase" line as each phase is completed.
 
-- [ ] Phase 1: Public site in React (Vite + React Router) in `frontend/`
+- [x] Phase 1: Public site in React (Vite + React Router) in `frontend/`
 - [ ] Phase 2: Team portal: song library and setlists (mock JSON data) in `frontend/`
 - [ ] Phase 3: Back end, login, schedule, and admin (Django, Django REST Framework, MySQL) in `backend/`
 - [ ] Phase 4: Extras (chord transposer, lyrics display, reminders, practice tracks)
 
-Current phase: Phase 1 (moving the earlier plain-HTML prototype into React).
+Current phase: Phase 2
 Note: `backend/` already holds the Phase 3 data model (Django models, migrations, MySQL
 script), designed ahead of time. Its API, login, and front-end connection are not built yet.
 

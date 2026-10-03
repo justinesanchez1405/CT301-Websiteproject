@@ -10,7 +10,7 @@ to make it their own.
 
 | What | Where |
 |---|---|
-| Public website: HTML prototype, being moved to React in `frontend/` | [`site/`](site/) · [live site](https://justinesanchez1405.github.io/CT301-Websiteproject/) |
+| Public website (React, Vite, React Router) | [`frontend/`](frontend/) · [live site](https://justinesanchez1405.github.io/CT301-Websiteproject/) |
 | Design document (brand, components, page screenshots, accessibility) | [`docs/design-document.md`](docs/design-document.md) |
 | Database design (ER diagram, tables, constraints, business rules) | [`docs/database-design.md`](docs/database-design.md) |
 | Database implementation (Django models and migrations, MySQL script) | [`backend/`](backend/) · [`backend/schema.sql`](backend/schema.sql) |
@@ -18,7 +18,7 @@ to make it their own.
 
 ## Status
 
-- [ ] Phase 1: Public site in React (Vite + React Router). HTML prototype done, React move in progress.
+- [x] Phase 1: Public site in React (Vite + React Router)
 - [ ] Phase 2: Team portal: song library and setlists (mock JSON data)
 - [ ] Phase 3: Back end, login, schedule, and admin (Django, Django REST Framework, MySQL).
       The database is already designed and modeled in `backend/`.
@@ -26,8 +26,8 @@ to make it their own.
 
 ## Run it locally
 
-- **Website (prototype):** open `site/index.html` in a browser. The React version will run with
-  `cd frontend && npm install && npm run dev`.
+- **Website:** `cd frontend && npm install && npm run dev`, then open the address it prints.
+  Team details live in `frontend/src/data/settings.json`.
 - **Database:** see [`backend/README.md`](backend/README.md).
 
 All names and contact details are fictional demo data. Demo songs are public-domain hymns.
