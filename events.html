@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Makes phones use their real width instead of zooming out to a fake desktop width. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Events · Tehillim</title>
+  <meta name="description" content="Upcoming services and special events.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+
+  <!-- Brand fonts from Google Fonts. preconnect starts the connection early so text appears sooner. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Tells the CSS that JavaScript works, so it's safe to hide the phone nav behind
+       the Menu button. It runs here in <head> so the nav never flashes open first. -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- defer: download now, run after the page is read. config.js comes first
+       because main.js uses the siteConfig it defines. -->
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <!-- Only this page loads events.js: it lists upcoming events. -->
+  <script src="js/events.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== Shared header: the same on every page ===== -->
+  <header class="site-header">
+    <div class="th-header container">
+      <a class="th-wordmark" href="index.html" aria-label="Tehillim, home">
+        <span class="th-wordmark__latin">Tehillim</span>
+        <span class="th-wordmark__rule" aria-hidden="true"></span>
+        <!-- Hebrew reads right to left: lang and dir tell the browser and screen readers. -->
+        <span class="th-wordmark__he" lang="he" dir="rtl">תְּהִלִּים</span>
+      </a>
+
+      <!-- aria-controls links the button to the nav it opens. aria-expanded is updated by main.js. -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <!-- Lucide "menu" icon. aria-hidden because the word "Menu" already says what it does. -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="th-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="team.html">Meet the team</a></li>
+          <li><a href="songs.html">Songs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Page content: the only part that differs between pages ===== -->
+  <main id="main" class="page container">
+    <h1>Events</h1>
+    <p>Upcoming services and special events. Everyone is welcome.</p>
+
+    <!-- events.js fills this list with upcoming events only. Past ones are hidden automatically. -->
+    <ul class="event-list" id="event-list"></ul>
+  </main>
+
+  <!-- ===== Shared footer. Empty spots are filled from js/config.js by main.js ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <p class="site-footer__church" data-config="churchName"></p>
+          <p data-config="city"></p>
+        </div>
+
+        <div>
+          <h2 class="site-footer__heading">Services</h2>
+          <ul data-config-list="serviceTimes"></ul>
+        </div>
+
+        <div>
+          <h2 class="site-footer__heading">Contact</h2>
+          <p><a class="site-footer__email" data-config-email></a></p>
+          <ul class="site-footer__links" data-config-social aria-label="Social media"></ul>
+        </div>
+      </div>
+
+      <p class="site-footer__small">
+        © <span data-year></span> <span data-config="churchName"></span> worship team.
+        Built with Tehillim.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
