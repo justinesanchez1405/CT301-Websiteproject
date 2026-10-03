@@ -1,0 +1,8 @@
+# Django 5.2 is the current long-term-support (LTS) release.
+# The <6.0 cap keeps CheckConstraint(condition=...) syntax working the same way.
+Django>=5.2,<6.0
+djangorestframework>=3.15
+# MySQL driver. Needs MySQL client libraries; on Windows pip installs a prebuilt wheel.
+mysqlclient>=2.2
+# Required by Django's ImageField (Profile.photo).
+Pillow>=10.0
