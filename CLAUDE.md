@@ -23,7 +23,7 @@ decides how everything looks: read `docs/brand/README.md` before building any pa
    - Give a "What you just built" recap: 2 to 4 bullets on how it connects to the rest of the site.
    - Suggest a git commit message.
    - Stop and wait before starting the next feature.
-4. Only use the tools the current phase calls for. No React in Phase 1. No back end before Phase 3.
+4. Only use the tools the current phase calls for. No back end before Phase 3.
 5. Write clear, commented code. Comments should explain why, not only what. Ian reads them to learn.
 6. Prefer simple, readable solutions over clever ones. Don't add libraries unless the spec
    calls for them or you explain why first.
@@ -40,20 +40,20 @@ decides how everything looks: read `docs/brand/README.md` before building any pa
 
 Update these checkboxes and the "Current phase" line as each phase is completed.
 
-- [x] Phase 1: Public site (HTML, CSS, vanilla JavaScript) in `site/`
-- [ ] Phase 2: Song library and setlists (React + Vite, mock JSON data) in `frontend/`
-- [ ] Phase 3: Team login, schedule, admin (Django, Django REST Framework, MySQL) in `backend/`
+- [ ] Phase 1: Public site in React (Vite + React Router) in `frontend/`
+- [ ] Phase 2: Team portal: song library and setlists (mock JSON data) in `frontend/`
+- [ ] Phase 3: Back end, login, schedule, and admin (Django, Django REST Framework, MySQL) in `backend/`
 - [ ] Phase 4: Extras (chord transposer, lyrics display, reminders, practice tracks)
 
-Current phase: Phase 2 (Phase 3 database already designed and modeled early, in `backend/`,
-for a class deadline; its API and front-end connection are not built yet)
+Current phase: Phase 1 (moving the earlier plain-HTML prototype into React).
+Note: `backend/` already holds the Phase 3 data model (Django models, migrations, MySQL
+script), designed ahead of time. Its API, login, and front-end connection are not built yet.
 
 ## Tech stack
 
 | Layer      | Tool                                          | Starts in |
 |------------|-----------------------------------------------|-----------|
-| Front end  | HTML, CSS, vanilla JavaScript                 | Phase 1   |
-| Front end  | React (Vite), React Router                    | Phase 2   |
+| Front end  | React (Vite), React Router, CSS               | Phase 1   |
 | Back end   | Python, Django, Django REST Framework         | Phase 3   |
 | Database   | MySQL (SQLite is fine while first learning)   | Phase 3   |
 | Versioning | Git and GitHub                                | Phase 1   |
@@ -66,8 +66,7 @@ tehillim/
 ├── docs/
 │   ├── SPEC.md        full product spec
 │   └── brand/         brand kit: brand book, tokens.css, components.css, logos
-├── site/              Phase 1 static site (kept as a reference after Phase 2)
-├── frontend/          Phase 2+ React app
+├── frontend/          React app: public site (Phase 1) and team portal (Phase 2+)
 └── backend/           Phase 3+ Django project
 ```
 
@@ -75,7 +74,7 @@ tehillim/
 
 - Mobile-first and responsive. Most team members will use the site on their phones.
 - Semantic HTML and accessibility: alt text, form labels, visible keyboard focus, WCAG AA contrast.
-- CSS: start `site/css/styles.css` by pasting in `docs/brand/tokens.css`. Use only those
+- CSS: start `frontend/src/styles.css` by pasting in `docs/brand/tokens.css`. Use only those
   variables for colors, spacing, radius, and fonts. Never hard-code a hex value.
 - Use `docs/brand/components.css` as the reference for how each component should look.
 - JavaScript: modern ES6+, `const`/`let`, no jQuery.
@@ -87,6 +86,5 @@ tehillim/
 
 Fill these in as each phase is set up.
 
-- Phase 1: open `site/index.html` with the VS Code Live Server extension
-- Phase 2: `cd frontend && npm install && npm run dev`
+- Phases 1 and 2: `cd frontend && npm install && npm run dev`, then open the address it prints
 - Phase 3: `cd backend && python manage.py runserver`

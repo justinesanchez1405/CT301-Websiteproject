@@ -39,8 +39,7 @@ Rules for demo data: `@example.com` emails only, no real people, public-domain h
 
 Where the settings live, by phase:
 
-- Phase 1: `site/js/config.js`, read by `main.js` to fill in the header, footer, and pages.
-- Phase 2: a settings JSON file in `frontend/src/data/`.
+- Phases 1 and 2: `frontend/src/data/settings.json`, imported by the React components that need it.
 - Phase 3: environment variables or a settings model the leader can edit.
 
 ## 3. Users and roles
@@ -85,100 +84,102 @@ Verses (King James Version, public domain):
 Copy tone: warm, plain, and welcoming. Sentence case for headings and buttons. Buttons say
 exactly what they do ("Send application", not "Submit").
 
-## 5. Phase 1: Public site
+## 5. Phase 1: Public site (React)
 
-Tools: HTML, CSS, vanilla JavaScript. Folder: `site/`. No frameworks, no build step.
+Tools: React with Vite, React Router, and plain CSS. Folder: `frontend/`. There is no back end
+yet: content comes from JSON files in `src/data/`, which the real back end replaces in Phase 3.
 
 ### File structure
 
 ```
-site/
-├── index.html
-├── team.html
-├── songs.html
-├── events.html
-├── join.html
-├── css/styles.css
-├── js/
-│   ├── main.js        shared: mobile nav toggle, current-page highlight, footer year
-│   ├── team.js        renders team cards from a data array
-│   ├── events.js      renders upcoming events from a data array
-│   └── join.js        form validation
-└── assets/images/
+frontend/
+├── index.html           Vite's single HTML page: fonts, favicon, the #root element
+├── public/              favicon and placeholder images, served as-is
+└── src/
+    ├── main.jsx         starts React and the router
+    ├── App.jsx          the list of routes
+    ├── styles.css       brand tokens (from docs/brand/tokens.css) and all styles
+    ├── data/            settings.json, team.json, events.json
+    ├── components/      shared pieces: Layout, Header, Footer, Selah, ...
+    └── pages/           one component per page
 ```
+
+### Routes
+
+| Path      | Page          |
+|-----------|---------------|
+| `/`       | Home          |
+| `/team`   | Meet the team |
+| `/songs`  | Songs         |
+| `/events` | Events        |
+| `/join`   | Join the team |
 
 ### Shared layout (every page)
 
 - Header: Tehillim wordmark (links home) and nav: Home, Meet the team, Songs, Events, Join.
-- On phones, the nav collapses behind a menu button (toggle with JavaScript, accessible:
-  `aria-expanded`, keyboard operable).
+- On phones, the nav collapses behind a menu button (opened and closed with React state,
+  accessible: `aria-expanded`, keyboard operable, Escape closes it).
 - The current page is highlighted in the nav.
-- Footer: church name, service times, contact email, social links, current year (set by JS).
+- Footer: church name, service times, contact email, social links, current year.
+- Team details come from `src/data/settings.json` (see section 2).
 
 ### Pages
 
-Home (`index.html`)
+Home
 - Hero with the Hebrew wordmark, meaning, and Psalm 150:6.
-- "Next service" block: day and time from Project details.
-- Short "About Tehillim" (2 to 3 sentences, placeholder copy marked TODO).
+- "Next service" block: service and rehearsal times from settings.
+- Short "About Tehillim" (2 to 3 sentences, from settings).
 - Preview of the Songs page (embedded playlist or link).
 - Call to action: "Join the team" linking to the Join page.
 
-Meet the team (`team.html`)
+Meet the team
 - Member cards: photo (placeholder image), name, position(s).
 - Group cards by position (Vocals, Band, Tech).
-- Cards are rendered from a JavaScript array in `team.js` (teaches DOM manipulation).
+- Cards are rendered from `src/data/team.json` with `.map()`.
   Use clearly fake placeholder names like "Member name"; each team replaces them with its own.
 
-Songs (`songs.html`)
-- Embedded Spotify playlist (iframe) using the link from Project details.
+Songs
+- Embedded Spotify playlist (iframe) using the link from settings, or a "coming soon" note.
 - "Songs we're learning this month": a short list (title and artist).
 
-Events (`events.html`)
-- Upcoming services and special events rendered from a JavaScript array in `events.js`.
+Events
+- Upcoming services and special events rendered from `src/data/events.json`.
 - Each event: date, time, title, short description.
 - Past events are automatically hidden by comparing dates in JavaScript.
 
-Join the team (`join.html`)
+Join the team
 - Psalm 33:3 at the top and a short welcome.
 - Form fields: full name (required), email (required, valid format), phone (optional),
   positions interested in (checkboxes, at least one), experience level (radio:
   beginner, some experience, experienced), message (optional, max 500 characters).
-- Validation in `join.js`: inline error messages next to each field, errors clear as the
+- Validation: inline error messages next to each field, errors clear as the
   user fixes them, focus moves to the first invalid field on submit.
 - On a valid submit, show a confirmation message on the page. Phase 1 does not save the
   data. Log it to the console and add a `TODO:` noting it connects to the back end in Phase 3.
 
 ### Phase 1 done when
 
-- All five pages exist, link to each other, and share the same header and footer.
+- All five routes work, share one header and footer, and move between pages without a full reload.
 - Layout works from 360px phone width up to desktop.
 - Mobile nav works with mouse, touch, and keyboard.
-- Team and events render from JavaScript arrays.
+- Team and events render from JSON data.
 - Join form validates every rule above.
 - No console errors. Images have alt text. Contrast passes WCAG AA.
 
-## 6. Phase 2: Song library and setlists (React)
+## 6. Phase 2: Team portal: song library and setlists
 
-Tools: React with Vite, React Router. Folder: `frontend/`. Data comes from mock JSON files
-in `src/data/` (the real back end replaces these in Phase 3).
+Tools: the same React app in `frontend/`. Data comes from mock JSON files in `src/data/`
+(the real back end replaces these in Phase 3).
 
 ### Steps
 
-1. Create the Vite React app in `frontend/`.
-2. Rebuild the five public pages as React components, reusing Phase 1's design and CSS tokens.
-   Keep `site/` as a reference. Point out to Ian how HTML pages became components.
-3. Add the team portal pages below using mock data.
+1. Add a portal section with its own layout (`PortalLayout`) inside the existing app.
+2. Build the portal pages below using mock data.
 
 ### Routes
 
 | Path                       | Page                          |
 |----------------------------|-------------------------------|
-| `/`                        | Home                          |
-| `/team`                    | Meet the team                 |
-| `/songs`                   | Songs                         |
-| `/events`                  | Events                        |
-| `/join`                    | Join the team                 |
 | `/portal`                  | Portal home (this week's service, my next assignment, latest announcement) |
 | `/portal/library`          | Song library                  |
 | `/portal/library/:songId`  | Song detail                   |
@@ -190,8 +191,8 @@ it's clear login comes in Phase 3.
 
 ### Suggested components
 
-`Layout`, `Header`, `Footer`, `PortalLayout`, `SongCard`, `SongList`, `SongFilters`,
-`ChordChart`, `SetlistCard`, `SetlistItem`, `EmptyState`.
+`PortalLayout`, `SongCard`, `SongList`, `SongFilters`, `ChordChart`, `SetlistCard`,
+`SetlistItem`, `EmptyState`. (`Layout`, `Header`, and `Footer` already exist from Phase 1.)
 
 ### Mock data shapes
 
@@ -251,7 +252,7 @@ Setlists
 
 ### Phase 2 done when
 
-- All public pages work as React components with React Router.
+- All portal routes work inside the same React app.
 - Library search and filters work together.
 - ChordPro charts render correctly, including lines with no chords.
 - Setlists link to songs and show the service key.
